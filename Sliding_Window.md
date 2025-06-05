@@ -87,21 +87,3 @@ def sliding_window(arr, condition):
     return result
 ```
 
----
-
-## 💡 Other Key Problems Using Sliding Window
-
-| Problem | Description |
-|--------|-------------|
-| **Fruits into Baskets** | Max length of subarray with at most 2 types of fruits. |
-| **No-repeat Substring** | Longest substring with all unique characters. |
-| **Longest Substring with Same Letters after Replacement** | Max length of substring with at most k replacements to make all chars same. |
-| **Longest Subarray with Ones after Replacement** | Replace at most k 0s to get longest subarray of 1s. |
-| **Permutation in a String** | Check if string contains permutation of pattern using char frequency + sliding window. |
-| **String Anagrams** | Find all anagram start indices in text using frequency maps. |
-| **Smallest Window containing Substring** | Find minimum length substring containing all characters of a pattern. |
-| **Words Concatenation** | Find starting indices of all concatenated words in text. |
-
----
-
-Let me know if you want any of the problems coded step-by-step!
