@@ -1,73 +1,83 @@
-'''
-TWO POINTERS
-------------------------------
-Solves sorted array pair sums, removing duplicates, triplets/quads, or string problems with backspaces.
-'''
+# Two Pointers Template
 
-def two_pointers_template(arr):
-    # If applicable, sort the array (only if order doesn't matter and it's not already sorted)
-    # arr.sort()
+Use this template when solving problems that involve scanning from both ends of a sorted array or finding pairs.
 
+## Classic Two-Pointers Pattern
+
+```python
+def two_pointers_template(arr, target):
+    arr.sort()  # If array is not sorted and sorting is allowed
     left = 0
     right = len(arr) - 1
 
     while left < right:
-        # Example operation: calculate the sum of values at both pointers
         current_sum = arr[left] + arr[right]
 
         if current_sum == target:
-            # Found a valid pair (or satisfy some condition)
-            return [left, right]  # or store result, or increment counters
-
+            # Process the pair
+            return [left, right]  # or save to results
         elif current_sum < target:
-            # Move left pointer to increase the sum
             left += 1
         else:
-            # Move right pointer to decrease the sum
             right -= 1
 
-    # Return result depending on problem (boolean, list, count, etc.)
-    return []  # or -1, False, or result variable
+    return []
+```
 
-'''
-🔁 Variants:
------------
-- For **removal or in-place update**:
-  - use `slow` and `fast` pointer pattern
+## Variations
 
-- For **strings or backspace compare**:
-  - start from end of both strings and move backward
+### 1. Triplet/Quadruplet Sum
+```python
+arr.sort()
+for i in range(len(arr)):
+    left = i + 1
+    right = len(arr) - 1
+    while left < right:
+        current_sum = arr[i] + arr[left] + arr[right]
+        # apply logic...
+```
 
-- For **triplet or quad problems**:
-  - outer loop fixes first element(s), inner uses two pointers
+### 2. Comparing Strings with Backspaces
+```python
+def backspace_compare(S, T):
+    def next_valid_char(index, string):
+        skip = 0
+        while index >= 0:
+            if string[index] == "#":
+                skip += 1
+            elif skip > 0:
+                skip -= 1
+            else:
+                return index
+            index -= 1
+        return index
 
-- For **subarray/window problems**:
-  - expand with `right`, shrink with `left` when condition breaks
-'''
+    i, j = len(S) - 1, len(T) - 1
+    while i >= 0 or j >= 0:
+        i = next_valid_char(i, S)
+        j = next_valid_char(j, T)
 
-def slow_fast_pointer_template(arr):
-    # Example: remove duplicates
-    slow = 0
-    for fast in range(1, len(arr)):
-        if arr[fast] != arr[slow]:
-            slow += 1
-            arr[slow] = arr[fast]
-    return slow + 1  # New length
+        if i < 0 and j < 0:
+            return True
+        if i < 0 or j < 0 or S[i] != T[j]:
+            return False
+        i -= 1
+        j -= 1
+    return True
+```
 
-
-def sliding_window_template(arr, condition):
-    left = 0
-    result = 0
-    window_state = 0  # e.g. product, sum, char count, etc.
-
-    for right in range(len(arr)):
-        # expand window: update state
-        # while condition not met: shrink from left
-        while left <= right and not condition:
-            # shrink window: undo arr[left]
-            left += 1
-
-        # use window (e.g. count, store, etc.)
-        result += right - left + 1
-
-    return result
+### 3. Dutch National Flag (3-way Partitioning)
+```python
+def dutch_national_flag(arr):
+    low, mid, high = 0, 0, len(arr) - 1
+    while mid <= high:
+        if arr[mid] == 0:
+            arr[low], arr[mid] = arr[mid], arr[low]
+            low += 1
+            mid += 1
+        elif arr[mid] == 1:
+            mid += 1
+        else:
+            arr[mid], arr[high] = arr[high], arr[mid]
+            high -= 1
+```
