@@ -1,4 +1,5 @@
-# Two Pointers problems that involve scanning from both ends of a sorted array or finding pairs.
+# Two Pointers 
+problems that involve scanning from both ends of a sorted array or finding pairs.
 
 ## Classic Two-Pointers Pattern
 
