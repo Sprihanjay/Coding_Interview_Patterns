@@ -1,6 +1,6 @@
 # Fast and Slow Pointers Template
 
-Use this pattern when you need to detect cycles, remove duplicates, or work on problems involving relative motion through an array or linked list.
+When you need to detect cycles, remove duplicates, or work on problems involving relative motion through an array or linked list.
 
 ## 1. Cycle Detection (Floyd's Tortoise and Hare)
 
